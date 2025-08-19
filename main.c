@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/18 17:40:13 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/08/19 16:54:52 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/08/19 14:48:46 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/08/19 16:55:23 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdlib.h>
+#include "ft_printf.h"
+#include <stdio.h>
 
-size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-void	*ft_calloc(size_t nmemb, size_t size);
-int		ft_toupper(int c);
-char	*ft_ptohex(size_t n, int (*f)(int));
-int		ft_printf(const char *format, ...);
-#endif
+int	main()
+{
+	int i;
+
+	printf("0x%s\n", ft_ptohex((size_t)&i, ft_toupper));
+	printf("%p", &i);
+}
