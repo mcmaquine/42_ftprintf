@@ -28,5 +28,6 @@ fclean: clean
 re: fclean all
 
 #compilando com a lib estática
-main: $(NAME) main.c
-	cc -g main.c ./$(NAME) -o $@
+main: main.c $(NAME)
+	cc -g main.c -static ./$(NAME) -o $@
+	./main

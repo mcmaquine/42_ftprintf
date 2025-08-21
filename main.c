@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:48:46 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/08/19 16:55:23 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/08/21 17:14:50 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,14 @@
 
 int	main()
 {
-	int i;
+	unsigned int i;
+	int	sizeft, sizep;
+	char	*str = NULL;
 
-	printf("0x%s\n", ft_ptohex((size_t)&i, ft_toupper));
-	printf("%p", &i);
+	i = 90238756;
+	sizeft = ft_printf("%p %p, %x, %X, %%, %s", (void *)16, &i, -1, i, str);
+	printf("\n");
+	sizep = printf("%p %p, %x, %X, %%, %s", (void *)16, &i, -1, i, str);
+	printf("\n\nSize of ft_printf: %d\nSize of printf: %d\n", sizeft, sizep);
+	ft_putnbr(10);
 }

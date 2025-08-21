@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 17:40:13 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/08/19 16:54:52 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:34:04 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define FT_PRINTF_H
 # include <stdarg.h>
 # include <stdlib.h>
+# include <unistd.h>
 
-size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-void	*ft_calloc(size_t nmemb, size_t size);
-int		ft_toupper(int c);
-char	*ft_ptohex(size_t n, int (*f)(int));
-int		ft_printf(const char *format, ...);
+int	ft_putchar_fd(int fd, char c);
+int	ft_putstr_fd(int fd, char *str);
+int	ft_putnbr(int n);
+int	ft_putnbr_u(unsigned int n);
+int	ft_puthex(size_t n, char to_upper);
+int	ft_printf(const char *format, ...);
 #endif

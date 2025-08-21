@@ -6,76 +6,69 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:40:15 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/08/19 17:20:05 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/08/21 17:09:40 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_putchar_fd(int fd, char c)
 {
-	size_t	len;
+	int	total_char;
 
-	len = 0;
-	while (*s)
+	total_char = write(fd, &c, 1);
+	return (total_char);
+}
+
+int	ft_putstr_fd(int fd, char *str)
+{
+	int	total_char;
+
+	total_char = 0;
+	while (*str)
+		total_char += write(fd, str++, 1);
+	return (total_char);
+}
+
+int	ft_putnbr(int n)
+{
+	int		i;
+	long	ln;
+
+	i = 0;
+	ln = n;
+	if (ln < 0)
 	{
-		len++;
-		s++;
+		i += ft_putchar_fd(1, '-');
+		ln = -ln;
 	}
-	return (len);
+	if (ln >= 10)
+		i += ft_putnbr(ln / 10);
+	i += ft_putchar_fd(1, ln % 10 + '0');
+	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_putnbr_u(unsigned int n)
 {
-	char	*joined;
-	char	*str1;
-	char	*str2;
-	char	*start;
+	int	i;
 
-	str1 = (char *)s1;
-	str2 = (char *)s2;
-	joined = (char *)ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
-	if (!joined)
-		return (NULL);
-	start = joined;
-	while (*str1)
-		*joined++ = *str1++;
-	while (*str2)
-		*joined++ = *str2++;
-	*joined = '\0';
-	return (start);
+	i = 0;
+	if (n >= 10)
+		i += ft_putnbr(n / 10);
+	i += ft_putchar_fd(1, n % 10 + '0');
+	return (i);
 }
 
-/*
-The function allocates memory for an array of nmemb elements of size bytes each
-and returns a pointer to the allocated memory. The memory is set to zero. If
-nmemb or size is 0, then ft_calloc() returns a unique pointer value that can
-later be successfully passed to free().
-*/
-void	*ft_calloc(size_t nmemb, size_t size)
+int	ft_puthex(size_t n, char to_upper)
 {
-	void			*ptr;
-	unsigned char	*p;
-	size_t			total_bytes;
+	int	i;
 
-	total_bytes = nmemb * size;
-	if (!nmemb || !size)
-		return (malloc(sizeof(void *)));
-	if ((!nmemb && !size) || (nmemb != total_bytes / size))
-		return (NULL);
-	ptr = malloc(total_bytes);
-	if (!ptr)
-		return (NULL);
-	p = ptr;
-	while (total_bytes--)
-		*p++ = '\0';
-	return (ptr);
-}
-
-int	ft_toupper(int c)
-{
-	if (c >= 'a' && c <= 'z')
-		return (c ^ 0x20);
+	i = 0;
+	if (n >= 16)
+		i += ft_puthex(n / 16, to_upper);
+	if (to_upper)
+		i += ft_putchar_fd(1, "0123456789ABCDEF"[n % 16]);
 	else
-		return (c);
+		i += ft_putchar_fd(1, "0123456789abcdef"[n % 16]);
+	return (i);
 }
