@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/18 17:29:33 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/08/21 17:15:32 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/08/25 10:02:00 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/08/25 10:02:03 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static int	put_pointer(void *ptr)
 {
@@ -66,8 +65,6 @@ int	ft_printf(const	char *format, ...)
 	total = 0;
 	if (!format)
 		return (-1);
-	if (!format[0])
-		return (0);
 	va_start(ptr, format);
 	while (*format)
 	{

@@ -1,0 +1,48 @@
+Instalacao
+
+No idioma escolhi o ingles
+In location choose your local
+In locales I choose United States
+Keyboard layout choose English American
+After options above the installation starts
+Insert hostname: mmaquine42
+Insira um domain name
+Insert root password
+Retype root passowrd
+Insert a name for a User, this user account will be crated for you to use instead of the root account fot non-administrative activities
+Insert you 42 login as username
+Insert a password for login and retype
+Choose clock
+On partition disks, select Guided - use entire disl and set up LVM
+Select separeta /home partition
+Cancel the erasing data
+Choose Yes on Write changes to disks and configure LVM
+Just hit continue when choosing amount of volume group to use guided partitioning
+Write changes to disk - YES
+Left blank htt proxy information. It will start configuring apt
+
+[IMPORTANT STEP]
+On [!] Software selection unmark all Debian desktop environment
+Mark WEB SERVER and SSH SERVER
+
+Not necessary install GRUB. On [!] Configuring grup-pc choose /dev/sda
+
+## Package to install
+apt install net-tools
+
+## Config SSH
+Edit file /etc/ssh/sshd_config with nano
+- On line #Port 22, remove # and change 22 to 4242
+- On the line PermitRootLogin edti option to no (remove # if necessary)
+
+### Configure VirtualBox to accepet SSH for your virtual machine
+Recommende for Host-to_Guest
+- In VirtualBox, select guest VM, go to Settings > Network > Adapter 1.
+- Set "Attached to:" to NAT.
+- Click Advanced > Port Forwarding.
+- Add a new rule:
+	- Name: SSH (or any descriptive name)
+	- Protocol: TCP
+	- Host Port: Choose an unused port on your host machine (e.g., 4242).
+	- Guest port: 4242 (the port configured on SSH service)
+	- Leave Host IP and Guest IP blank.
